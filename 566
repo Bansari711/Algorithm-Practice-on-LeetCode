@@ -1,0 +1,31 @@
+public class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        int[][] answerMatrix = new int[r][c];
+
+		if (nums.length == 0 || (r * c) != (nums.length * nums[0].length)) {
+			return nums;
+		} else {
+			int rowQue = 0;
+			int colQue = 0;
+			int rowAns = 0;
+			int colAns = 0;
+
+			for (int i = 0; i < (r * c); i++) {
+				answerMatrix[rowAns][colAns] = nums[rowQue][colQue];
+				if (colAns >= c - 1) {
+					colAns = 0;
+					rowAns++;
+				} else {
+					colAns++;
+				}
+				if (colQue >= nums[0].length - 1) {
+					colQue = 0;
+					rowQue++;
+				} else {
+					colQue++;
+				}
+			}
+		}
+		return answerMatrix;
+    }
+}
