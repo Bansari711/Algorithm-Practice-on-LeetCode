@@ -1,0 +1,12 @@
+public class Solution {
+    public int findComplement(int num) {
+        String outputNum = "";
+		while (num > 0) {
+			int bit = num % 2;
+			bit = bit ^ 1;
+			outputNum = String.valueOf(bit) + outputNum;
+			num = num / 2;
+		}
+		return (Integer.parseInt(outputNum, 2));
+    }
+}
