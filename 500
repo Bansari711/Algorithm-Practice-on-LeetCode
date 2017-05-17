@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Hashtable;
+
+public class Solution {
+    public String[] findWords(String[] words) {
+        Hashtable<String, String> row1 = new Hashtable<>();
+		Hashtable<String, String> row2 = new Hashtable<>();
+		Hashtable<String, String> row3 = new Hashtable<>();
+
+		ArrayList<String> outputWords = new ArrayList<>();
+
+
+		row1.put("q", "q");
+		row1.put("w", "w");
+		row1.put("e", "e");
+		row1.put("r", "r");
+		row1.put("t", "t");
+		row1.put("y", "y");
+		row1.put("u", "u");
+		row1.put("i", "i");
+		row1.put("o", "o");
+		row1.put("p", "p");
+
+		row2.put("a", "a");
+		row2.put("s", "s");
+		row2.put("d", "d");
+		row2.put("f", "f");
+		row2.put("g", "g");
+		row2.put("h", "h");
+		row2.put("j", "j");
+		row2.put("k", "k");
+		row2.put("l", "l");
+
+		row3.put("z", "z");
+		row3.put("x", "x");
+		row3.put("c", "c");
+		row3.put("v", "v");
+		row3.put("b", "b");
+		row3.put("n", "n");
+		row3.put("m", "m");
+
+		int count1 = 0;
+		int count2 = 0;
+		int count3 = 0;
+
+		for (int i = 0; i < words.length; i++) {
+			char[] charInputWord = words[i].toLowerCase().toCharArray();
+			count1 = count2 = count3 = 0;
+			for (int j = 0; j < charInputWord.length; j++) {
+				if (row1.contains(String.valueOf(charInputWord[j]))) {
+					count1++;
+				} else if (row2.contains(String.valueOf(charInputWord[j]))) {
+					count2++;
+				} else if (row3.contains(String.valueOf(charInputWord[j]))) {
+					count3++;
+				}
+			}
+			if (count1 == charInputWord.length || count2 == charInputWord.length || count3 == charInputWord.length) {
+				outputWords.add(words[i]);
+			}
+		}
+		return outputWords.toArray(new String[outputWords.size()]);
+    }
+}
