@@ -1,0 +1,15 @@
+public class Solution {
+    public String reverseWords(String s) {
+        String[] words = s.split(" ");
+		String output = "";
+		for (int i = 0; i < words.length; i++) {
+			String[] charArray = words[i].split("");
+			StringBuffer strBfr = new StringBuffer(words[i]);
+			output += strBfr.reverse();
+			if (i != words.length-1){
+			    output += " ";
+			}
+		}
+		return output;
+    }
+}
