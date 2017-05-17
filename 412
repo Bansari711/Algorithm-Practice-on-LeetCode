@@ -1,0 +1,16 @@
+public class Solution {
+    public List<String> fizzBuzz(int n) {
+        List<String> outputStr = new ArrayList<>();
+		for (int i = 1; i <= n; i++) {
+			if (i % 3 == 0 && i % 5 == 0)
+				outputStr.add("FizzBuzz");
+			else if (i % 3 == 0)
+				outputStr.add("Fizz");
+			else if (i % 5 == 0)
+				outputStr.add("Buzz");
+			else
+				outputStr.add(String.valueOf(i));
+		}
+		return outputStr;
+    }
+}
