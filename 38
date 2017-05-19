@@ -1,0 +1,35 @@
+public class Solution {
+    public String countAndSay(int n) {
+        String lastNumber = "0";
+		String outputStr = "";
+		String finalStr = "";
+		for (int i = 1; i <= n; i++) {
+			finalStr = "";
+			if (lastNumber.equals("0")) {
+				lastNumber = "1";
+				outputStr = lastNumber;
+			} else {
+				char[] num = lastNumber.toCharArray();
+				int repeatNum = 0;
+				int tempNum = Integer.parseInt(String.valueOf(num[0]));
+				for (int j = 0; j < num.length; j++) {
+
+					if (tempNum == Integer.parseInt(String.valueOf(num[j]))) {
+						repeatNum++;
+						outputStr = String.valueOf(repeatNum) + String.valueOf(tempNum);
+						tempNum = Integer.parseInt(String.valueOf(num[j]));
+					} else {
+						finalStr = finalStr + outputStr;
+						repeatNum = 0;
+						tempNum = Integer.parseInt(String.valueOf(num[j]));
+						j--;
+					}
+
+				}
+			}
+			finalStr += outputStr;
+			lastNumber = finalStr;
+		}
+		return finalStr;
+    }
+}
