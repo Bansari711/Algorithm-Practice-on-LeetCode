@@ -1,0 +1,44 @@
+You are given a map in form of a two-dimensional integer grid where 1 represents land and 0 represents water. Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells). The island doesn't have "lakes" (water inside that isn't connected to the water around the island). One cell is a square with side length 1. The grid is rectangular, width and height don't exceed 100. Determine the perimeter of the island.
+
+
+import java.util.Hashtable;
+
+public class IslandPerimeter {
+
+	public static void main(String[] args) {
+		
+	}
+
+	public int islandPerimeter(int[][] grid) {
+
+		Hashtable<String, Integer> perimeterHashtable = new Hashtable<>();
+		int finalPerimeter = 0;
+
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid[i].length; j++) {
+				if (grid[i][j] == 1) {
+
+					String sameRowCheck = "(" + i + "," + (j - 1) + ")";
+					String sameColumnCheck = "(" + (i - 1) + "," + j + ")";
+
+					finalPerimeter += 4;
+					int perimeter = 4;
+
+					if (perimeterHashtable.containsKey(sameRowCheck)) {
+						perimeterHashtable.put(sameRowCheck, perimeterHashtable.get(sameRowCheck) - 1);
+						perimeter--;
+						finalPerimeter -=2;
+					}
+					if (perimeterHashtable.containsKey(sameColumnCheck)) {
+						perimeterHashtable.put(sameColumnCheck, perimeterHashtable.get(sameColumnCheck) - 1);
+						perimeter--;
+						finalPerimeter -= 2;
+					}
+					perimeterHashtable.put("(" + i + "," + j + ")", perimeter);
+				}
+			}
+		}
+		
+		return finalPerimeter;
+	}
+}
