@@ -1,0 +1,44 @@
+You are given two arrays (without duplicates) nums1 and nums2 where nums1’s elements are subset of nums2. Find all the next greater numbers for nums1's elements in the corresponding places of nums2.
+
+The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.
+
+
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        
+        if (nums1 == null || nums1.length == 0) {
+			return new int[0];
+		}
+        
+        int[] outputArray = new int[nums1.length];
+
+		int maxIntFromNums2 = Integer.MIN_VALUE;
+
+		// find maximum number from nums2
+		for (int i = 0; i < nums2.length; i++) {
+			if (maxIntFromNums2 < nums2[i])
+				maxIntFromNums2 = nums2[i];
+		}
+
+		// create map integer array for nums2 array
+		int[] mapNums2 = new int[maxIntFromNums2 + 1];
+		for (int i = 0; i < nums2.length; i++) {
+			mapNums2[nums2[i]] = i;
+		}
+
+		for (int i = 0; i < nums1.length; i++) {
+			int index = mapNums2[nums1[i]];
+			while (index < nums2.length) {
+				if (nums1[i] < nums2[index]){
+					outputArray[i] = nums2[index];
+					break;
+				}
+				else{
+					outputArray[i] = -1;
+				}
+                index++;
+			}
+		}
+		return outputArray;
+    }
+}
