@@ -1,0 +1,36 @@
+class Solution {
+    public int[] sortedSquares(int[] A) {
+        
+       int negIndex = 0;
+		while (negIndex < A.length && A[negIndex] < 0) {
+			negIndex++;
+		}
+		negIndex--;
+
+		int result[] = new int[A.length];
+		int resultIndex = 0;
+		int posIndex = negIndex + 1;
+
+		while (posIndex < A.length && negIndex >= 0) {
+			if (A[posIndex] <= Math.abs(A[negIndex])) {
+				result[resultIndex++] = A[posIndex] * A[posIndex];
+				posIndex++;
+			} else {
+				result[resultIndex++] = A[negIndex] * A[negIndex];
+				negIndex--;
+			}
+		}
+		
+		while (negIndex >= 0) {
+			result[resultIndex++] = A[negIndex] * A[negIndex];
+			negIndex--;
+		}
+
+		while (posIndex < A.length) {
+			result[resultIndex++] = A[posIndex] * A[posIndex];
+			posIndex++;
+		}
+		
+		return result;
+    }
+}
